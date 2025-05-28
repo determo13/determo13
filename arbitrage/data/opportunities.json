@@ -1,0 +1,5 @@
+[
+  {"pair": "SOL/USDC", "path": ["SOL", "USDC", "SOL"], "expected_profit_usd": 0.8},
+  {"pair": "BTC/USDC", "path": ["BTC", "USDC", "BTC"], "expected_profit_usd": 1.2},
+  {"pair": "ETH/SOL", "path": ["ETH", "SOL", "ETH"], "expected_profit_usd": 0.5}
+]
