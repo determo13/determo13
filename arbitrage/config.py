@@ -5,6 +5,7 @@ from typing import List
 class AppConfig:
     """Configuration for the trading app."""
     mode: str = "test"  # "test" or "live"
+    data_source: str = "dummy"  # "dummy" or "live"
     min_profit_usd: float = 0.5
     max_slippage_pct: float = 0.3
     trade_cooldown_sec: int = 15
@@ -13,3 +14,8 @@ class AppConfig:
     @property
     def is_live(self) -> bool:
         return self.mode == "live"
+
+    @property
+    def uses_live_data(self) -> bool:
+        """Return ``True`` if live market data should be fetched."""
+        return self.data_source == "live"
