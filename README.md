@@ -15,5 +15,13 @@ Run the CLI in test mode:
 python app.py --mode test
 ```
 
+By default the application uses a bundled dummy dataset.  To fetch live market
+quotes via Jupiter's API in an environment that has Internet access, pass the
+``--data-source live`` option:
+
+```bash
+python app.py --mode test --data-source live
+```
+
 The command-line interface and module stubs can be extended to integrate the
 Jupiter aggregator API, Helius data sources, and real trade execution.

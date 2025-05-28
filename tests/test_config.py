@@ -4,5 +4,7 @@ from arbitrage.config import AppConfig
 def test_default_config():
     cfg = AppConfig()
     assert cfg.mode == "test"
+    assert cfg.data_source == "dummy"
     assert cfg.is_live is False
+    assert cfg.uses_live_data is False
     assert "SOL" in cfg.watchlist_tokens

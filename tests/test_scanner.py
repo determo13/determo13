@@ -6,7 +6,7 @@ from arbitrage.scanner import scan_arbitrage
 
 
 def test_scanner_returns_data():
-    cfg = AppConfig(mode="test")
+    cfg = AppConfig(mode="live", data_source="live")
     opportunities = list(scan_arbitrage(cfg))
     assert len(opportunities) > 0
     # Ensure the first opportunity has expected keys
