@@ -38,7 +38,11 @@ def test_scanner_returns_data(monkeypatch):
         def __exit__(self, exc_type, exc, tb):
             pass
 
-    def mock_urlopen(url, timeout=10):
+    captured = {}
+
+    def mock_urlopen(req, timeout=10):
+        # Capture the request URL for verification
+        captured["url"] = getattr(req, "full_url", req)
         return MockHTTPResponse(json.dumps(mock_payload))
 
     monkeypatch.setattr(urllib.request, "urlopen", mock_urlopen)
@@ -46,6 +50,9 @@ def test_scanner_returns_data(monkeypatch):
 
     cfg = AppConfig(mode="live", data_source="live")
     opportunities = list(scan_arbitrage(cfg))
+
+    # Verify the request included swapMode=ExactIn
+    assert "swapMode=ExactIn" in captured.get("url", "")
 
     # scan_arbitrage yields the first route as an opportunity
     expected = dataset[0]
