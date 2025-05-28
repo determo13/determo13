@@ -2,7 +2,10 @@
 
 This project provides a basic skeleton for an arbitrage trading app on Solana.
 It demonstrates the overall structure, including a CLI and configuration, but
-does not implement real trading logic.
+the trading logic is intentionally simplistic.  The scanner, executor and
+wallet modules ship with minimal implementations so the application can run
+without raising ``NotImplementedError`` while still leaving plenty of room for
+real integration work.
 
 ## Usage
 
