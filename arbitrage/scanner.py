@@ -62,6 +62,7 @@ def scan_arbitrage(config: AppConfig):
             # Quote for one SOL (9 decimals)
             "amount": 1_000_000_000,
             "slippageBps": int(config.max_slippage_pct * 100),
+            "swapMode": "ExactIn",
         }
 
         url = f"{base_url}?{parse.urlencode(params)}"
