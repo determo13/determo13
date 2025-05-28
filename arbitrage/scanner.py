@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import json
+import urllib.error
 
 TOKEN_MINTS = {
     "SOL": "So11111111111111111111111111111111111111112",
@@ -64,8 +65,15 @@ def scan_arbitrage(config: AppConfig):
         }
 
         url = f"{base_url}?{parse.urlencode(params)}"
-        with request.urlopen(url, timeout=10) as resp:
-            data = _json.load(resp)
+        try:
+            with request.urlopen(url, timeout=10) as resp:
+                data = _json.load(resp)
+        except urllib.error.HTTPError as exc:
+            print(f"HTTP error fetching quote data: {exc}")
+            return
+        except urllib.error.URLError as exc:
+            print(f"Network error fetching quote data: {exc}")
+            return
 
         routes = data.get("data") or data.get("routes", [])
         if not routes:
