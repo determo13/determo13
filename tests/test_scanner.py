@@ -1,4 +1,9 @@
-import sys, pathlib
+import sys
+import pathlib
+import json
+import io
+from unittest.mock import patch
+
 sys.path.append(str(pathlib.Path(__file__).resolve().parents[1]))
 
 import io
@@ -7,6 +12,7 @@ from pathlib import Path
 from arbitrage.config import AppConfig
 from arbitrage.scanner import scan_arbitrage
 import urllib.request
+
 
 
 def test_scanner_returns_data(monkeypatch):
