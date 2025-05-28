@@ -65,8 +65,9 @@ def scan_arbitrage(config: AppConfig):
         }
 
         url = f"{base_url}?{parse.urlencode(params)}"
+        req = request.Request(url, headers={"User-Agent": "determo13/1.0"})
         try:
-            with request.urlopen(url, timeout=10) as resp:
+            with request.urlopen(req, timeout=10) as resp:
                 data = _json.load(resp)
         except urllib.error.HTTPError as exc:
             print(f"HTTP error fetching quote data: {exc}")
